@@ -10,12 +10,23 @@ public class ImageCode {
 	private String code;
 	
 	private LocalDateTime expireTime;
+	
+	public boolean isExpried() {
+		return LocalDateTime.now().isAfter(expireTime);
+	}
 
 	public ImageCode(BufferedImage image, String code, LocalDateTime expireTime) {
 		super();
 		this.image = image;
 		this.code = code;
 		this.expireTime = expireTime;
+	}
+	
+	public ImageCode(BufferedImage image, String code, int expireIn) {
+		super();
+		this.image = image;
+		this.code = code;
+		this.expireTime = LocalDateTime.now().plusSeconds(expireIn);
 	}
 
 	public BufferedImage getImage() {
