@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
@@ -34,6 +32,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
 				validate(new ServletWebRequest(request));
 			} catch (ValidateCodeException e) {
 				authenticationFailureHandler.onAuthenticationFailure(request, response, e);
+				return;
 			}
 		}
 		
